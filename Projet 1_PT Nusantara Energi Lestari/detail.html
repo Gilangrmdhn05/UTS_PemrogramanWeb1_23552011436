@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Informasi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 min-h-screen p-6">
+
+  <nav class="w-full mb-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-white">Detail Informasi</h1>
+    <a href="dashboard.html" class="text-sm text-blue-500 font-semibold">Kembali</a>
+  </nav>
+
+
+  <div id="content" class="max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+    <p class="text-gray-600 dark:text-gray-300 text-center">Memuat...</p>
+  </div>
+
+  <script>
+    const data = {
+      1: {
+        title: "Pencapaian dan Peringkat ESG",
+        img: "https://storage.googleapis.com/xurya-app-files/odoo-cms/images/customer-logo/mwhopdyx5yiq0vliadsqpp.jpeg",
+        desc: `PT Nusantara Energi Lestari berhasil meraih berbagai penghargaan nasional dan internasional atas praktik operasional yang berkelanjutan. Dengan menerapkan standar lingkungan, sosial, dan tata kelola (ESG), perusahaan ini berhasil mencetak prestasi yang memperkuat posisinya sebagai pemimpin industri energi hijau di Indonesia.`
+      },
+      2: {
+        title: "Komitmen Keberlanjutan",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPqR7ELcRtx9HWjKzD3bUQcbXUli2AYz0LUg&s",
+        desc: `Perusahaan terus berinvestasi pada proyek-proyek energi terbarukan dan menjaga transparansi dalam operasional. Selain itu, perusahaan aktif mengedukasi masyarakat tentang energi hijau dan mendorong penggunaan energi bersih di seluruh Indonesia.`
+      },
+      3: {
+        title: "Laporan dan Publikasi",
+        img: "https://lh4.googleusercontent.com/uTTwh2LbdHeA285q5Q-TJIiP5J3o_Ij7sR6mB_5gQdiG8BsGcjBO907DvNLmMyCZQlbQKssPUlGUkIKqo8wTz8YrabUMq1qCGeTAtxcd7xfy55teGiWvbenJ-S3JZCCMWmFaqYaVwrJ0qcL1l3-9fMs",
+        desc: `Setiap tahun, PT Nusantara Energi Lestari merilis laporan keberlanjutan sebagai bentuk tanggung jawab dan transparansi. Laporan ini mencakup data lingkungan, penggunaan energi, dampak sosial, serta roadmap perusahaan menuju net zero emission 2045.`
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const content = document.getElementById("content");
+
+    if (data[id]) {
+      content.innerHTML = `
+        <div class="flex flex-col md:flex-row md:items-start gap-8">
+          
+          <!-- Gambar -->
+          <div class="md:w-1/2">
+            <img src="${data[id].img}" class="rounded-xl w-full shadow-lg">
+          </div>
+
+          <!-- Text -->
+          <div class="md:w-1/2">
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+              ${data[id].title}
+            </h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+              ${data[id].desc}
+            </p>
+          </div>
+
+        </div>
+      `;
+    } else {
+      content.innerHTML = `
+        <p class="text-red-500 text-center font-semibold">Data tidak ditemukan.</p>
+      `;
+    }
+  </script>
+
+  <footer class="text-center text-white/70 mt-10 py-4">
+    © Copyright by 23552011436_GILANG RAMADHAN HERDIAN_TIF RP 23 CNS A
+  </footer>
+
+</body>
+</html>

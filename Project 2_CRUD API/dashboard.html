@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard PT Nusantara Energi Lestari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-sky-300 via-indigo-400 to-violet-600 p-6">
+
+  <nav class="w-full bg-white dark:bg-gray-800 shadow-lg rounded-xl p-4 mb-6 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-gray-800 dark:text-white">🏢 PT Nusantara Energi Lestari</h1>
+    <a href="login.html" class="text-sm text-red-500 font-semibold">Logout</a>
+  </nav>
+
+
+  <main class="max-w-5xl mx-auto">
+    
+    <!-- Container untuk data API -->
+    <div id="apiData" class="grid md:grid-cols-2 gap-6"></div>
+  </main>
+
+  <footer class="text-center text-white/70 mt-10 py-4">
+     © Copyright by 23552011436_GILANG RAMADHAN HERDIAN_TIF RP 23 CNS A
+  </footer>
+
+  <script>
+    const container = document.getElementById('apiData');
+
+    fetch('http://localhost:3000/details')
+      .then(res => res.json())
+      .then(data => {
+        container.innerHTML = data.map(item => `
+          <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md backdrop-blur-md">
+            <img src="${item.img}" class="w-full rounded-lg mb-3" />
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white">${item.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mt-2">${item.desc.substring(0, 120)}...</p>
+            <button onclick="window.location.href='detail.html?id=${item.id}'" class="mt-4 px-4 py-2 border rounded-full text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition">Lihat Detail</button>
+          </div>
+        `).join('');
+      })
+      .catch(err => {
+        container.innerHTML = `<p class="text-red-400">Gagal memuat data. Pastikan server API berjalan.</p>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
